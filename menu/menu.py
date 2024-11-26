@@ -1,13 +1,14 @@
 from InquirerPy import prompt
-from database import user_crud, worker_crud
 from database.db_config import stm
+from database.user_crud import user_menu
 
-user = user_crud.UserCRUD()
-work = worker_crud.WorkerCRUD()
 
 class Menu:
     def principal(self, msg):
-        print(f"{'MENU PRINCIPAL':=^50}")
+        stm('clear')
+        print(''.center(50, '-'))
+        print('MENU PRINCIPAL'.center(50))
+        print(''.center(50, '-'))
         menu = [
             {
                 'type': 'list',
@@ -18,9 +19,9 @@ class Menu:
         ]
         escolha = prompt(menu)
         if escolha['menu'] == 'Usuários':
-            user.create()
+            user_menu()
         if escolha['menu'] == 'Funcionários':
-            work.create()
+            ...
         if escolha['menu'] == 'Sair':
             stm('clear')
             return print('Sistema encerrado')
